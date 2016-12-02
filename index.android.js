@@ -2,13 +2,33 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  Navigator,
 } from 'react-native';
 import Homepage from './lib/Homepage';
+import Cloner from './lib/Cloner';
 
 class Test extends Component {
   render() {
+    const routes = [
+      {title: 'First Scene', index: 0},
+      {title: 'Main Menu', index: 1},
+      {title: 'Game Deck', index: 2},
+      {title: 'End Scene', index: 3}
+    ];
     return (
-      <Homepage styles={styles} />
+      <Navigator
+        initialRoute={routes[0]}
+        initialRouteStack={routes}
+        renderScene={(route, navigator) => {
+          if(route.index === 0)
+            return <Homepage styles={styles} changeScene={() => navigator.push(routes[1])} />
+          else
+            return <Cloner />
+          }
+        }
+        configureScene={(route, routeStack) =>
+          Navigator.SceneConfigs.FloatFromBottom}
+      />
     );
   }
 }
