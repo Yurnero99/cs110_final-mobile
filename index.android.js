@@ -5,7 +5,7 @@ import {
   Navigator,
 } from 'react-native';
 import Homepage from './lib/Homepage';
-import Cloner from './lib/Cloner';
+import Decks from './lib/Decks';
 
 class Test extends Component {
   render() {
@@ -23,7 +23,7 @@ class Test extends Component {
           if(route.index === 0)
             return <Homepage styles={styles} changeScene={() => navigator.push(routes[1])} />
           else
-            return <Cloner />
+            return <Decks />
           }
         }
         configureScene={(route, routeStack) =>
